@@ -11,10 +11,10 @@ import java.util.Scanner;
 public class DB_Controller {
 	Connection connection;
 	String sql;
-	//String DB_PATH = DB_Controller.class.getResource("store_inventory.sqlite").getFile();
+	String DB_PATH = DB_Controller.class.getResource("store_inventory.sqlite").getFile();
 	
 	//used for testing
-	String DB_PATH = DB_Controller.class.getResource("Chinook_Sqlite_AutoIncrementPKs.sqlite").getFile();
+	//String DB_PATH = DB_Controller.class.getResource("Chinook_Sqlite_AutoIncrementPKs.sqlite").getFile();
 	
 	
 	public DB_Controller() throws ClassNotFoundException, SQLException {
@@ -34,24 +34,27 @@ public class DB_Controller {
 		
 		//generate parameterized sql
 		if (param.equalsIgnoreCase("n/a")) {
+			//this will fetch the Console, price, and #in stock for entered title
 			//sql = "stuff";
-		
+		/*
 			//testing
 			sql = "SELECT art.Name AS art_name, alb.Title AS alb_title" +
 			" FROM album alb INNER JOIN artist art USING (ArtistId)" +
 			" ORDER BY art_name, alb_title";
-			
+		*/
 		
 			
 		} else {
+			//probably just have this print a message or whole inventory
 			//sql = "other stuff";
 			
+		/*	
 			//testing
 			sql = "SELECT art.Name AS art_name, alb.Title AS alb_title" +
 			" FROM artist art INNER JOIN album alb USING (ArtistId)" +
 			" WHERE art.Name LIKE ?" +
 			" ORDER BY art_name, alb_title";
-		
+		*/
 			
 		}
 		
