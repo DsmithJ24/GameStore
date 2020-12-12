@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class DB_Controller {
 	Connection connection;
 	String sql;
-	String DB_PATH = DB_Controller.class.getResource("store_inventory.sqlite").getFile();
+	String DB_PATH = DB_Controller.class.getResource("GameStore.sqlite").getFile();
 	
 	//used for testing
 	//String DB_PATH = DB_Controller.class.getResource("Chinook_Sqlite_AutoIncrementPKs.sqlite").getFile();
@@ -29,13 +29,17 @@ public class DB_Controller {
 		Scanner input = new Scanner(System.in);
 		
 		//now get the inputs
-		System.out.print("Enter an artist (type n/a for none): ");
+		System.out.print("Enter an game title (type n/a for none): ");
 		String param = input.next();
 		
 		//generate parameterized sql
 		if (param.equalsIgnoreCase("n/a")) {
 			//this will fetch the Console, price, and #in stock for entered title
-			//sql = "stuff";
+			//need title, platform, price, and # in stock
+			sql = "SELECT tit.Title AS game_title, inv.Platform AS console_version, inv.price AS version_price, inv.Number_In_Stock AS version_stock" +
+			" FROM inventory inv INNER JOIN title tit USING (ProductNo)" +
+			" ORDER BY game_title, console_version, version_price, version_stock";
+			
 		/*
 			//testing
 			sql = "SELECT art.Name AS art_name, alb.Title AS alb_title" +
@@ -46,7 +50,10 @@ public class DB_Controller {
 			
 		} else {
 			//probably just have this print a message or whole inventory
-			//sql = "other stuff";
+			sql = "SELECT tit.Title AS game_title, inv.Platform AS console_version, inv.price AS version_price, inv.Number_In_Stock AS version_stock" +
+			" FROM inventory inv INNER JOIN title tit USING (ProductNo)" +
+			"WHERE tit.Title LIKE ?" +
+			" ORDER BY game_title, console_version, version_price, version_stock";
 			
 		/*	
 			//testing
@@ -82,7 +89,7 @@ public class DB_Controller {
 		//get results
 		ResultSet res = stmt.executeQuery();
 		while(res.next()) {
-			System.out.println("<" + res.getString("art_name") + ">" + res.getString("alb_title")); //again will change later
+			System.out.println("<" + res.getString("game_title") + ">" + res.getString("console_version") + " " + res.getString("version_price") + " In Stock: " +res.getString("version_stock"));
 			
 		}
 	}
