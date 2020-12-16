@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Gamestore_Controller/src"/>
 	<classpathentry kind="lib" path="Gamestore_Controller/lib/sqlite-jdbc-3.8.11.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Daniel/Documents/College/2020-2021/OOP/Project/javax.servlet.jar"/>
 	<classpathentry kind="output" path="Gamestore_Controller/bin"/>
 </classpath>

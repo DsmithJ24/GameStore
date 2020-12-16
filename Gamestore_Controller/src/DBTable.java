@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
+
 import javax.swing.table.AbstractTableModel;
 
-//GUI table requires a model to define what data appears at which row/column
-
-public class Database_Table extends AbstractTableModel {
+public class DBTable extends AbstractTableModel {
 	String[] columnNames = {"Title", "Platform", "Price", "In_Stock"};
 	
 	public ArrayList<Row> table = new ArrayList<Row>();
@@ -16,7 +15,17 @@ public class Database_Table extends AbstractTableModel {
 	public String getColumnName(int col) {
 		return columnNames[col].toString();
 	}
-	
+/*	
+	public Class getCoulumnClass(int col) {
+		if (col==1)
+		{
+			return Icon.class;
+		}
+		else {
+			return getValueAt(0, col).getClass();
+		}
+	}
+*/	
 	public int getRowCount() {
 		return table.size();
 	}
@@ -27,6 +36,7 @@ public class Database_Table extends AbstractTableModel {
 	
 	public Object getValueAt(int row, int col) {
 		//if statements for parameters in Row.java
+		
 		if (col == 0) {
 			return table.get(row).title;
 		}
@@ -39,8 +49,27 @@ public class Database_Table extends AbstractTableModel {
 		else {
 			return table.get(row).version_stock;
 		}
-	}
-	
+/*		
+		if (col == 0) {
+			return table.get(row).title;
+		}
+		else if (col == 1) {
+			return table.get(row).rating;
+		}
+		else if (col == 2) {
+			return table.get(row).console;
+		}
+		else if (col == 3) {
+			return table.get(row).price;
+		}
+		else if (col == 4){
+			return table.get(row).version_stock;
+		}
+		else {
+			return table.get(row).game_description;
+		}
+*/
+	}	
 	public boolean isCellEditable(int row, int col) {
 		return false;
 	}
@@ -48,5 +77,4 @@ public class Database_Table extends AbstractTableModel {
 	public void setValueAt(Object value, int row, int col) {
 		
 	}
-
 }
